@@ -4,6 +4,8 @@ angular
 function ($scope) {
 	$scope.players = [];
 	
+	$scope.startingMoney = 50;
+	
 	$scope.addPlayerFormButtonHide = false;
 	$scope.addPlayerFormVisible = false;
 	
@@ -17,7 +19,7 @@ function ($scope) {
 	
 	$scope.addPlayer =
 		function() {
-			$scope.players.push({ name: $scope.newPlayerName, money: 0 });
+			$scope.players.push({ name: $scope.newPlayerName, money: $scope.startingMoney });
 			
 			$scope.addPlayerFormButtonHide = false;
 			$scope.addPlayerFormVisible = false;
@@ -31,5 +33,10 @@ function ($scope) {
 			$scope.addPlayerFormVisible = false;
 			
 			$scope.newPlayerName = '';
+		};
+	
+	$scope.removePlayer =
+		function(player) {
+			$scope.players.splice($scope.players.indexOf(player), 1);
 		};
 });

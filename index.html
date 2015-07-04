@@ -1,42 +1,87 @@
 <!doctype html>
 <html ng-app="elektroApp">
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
+	<link
+		rel="stylesheet"
+		href="styles.css">
+	<link
+		rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link
+		rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 	
 	<head>
 		<title>Elektro: A Power Grid Assistant</title>
+		<!-- TODO: favicon -->
 	</head>
 	
-	<body ng-controller="playerController">		
-		<div ng-repeat="player in players">
-			<div class="player">
-				<span class="name">{{player.name}}</span>
-				<span class="money">{{player.money}}</span>
-			</div>
-			
-			<!-- TODO: Remove player -->
-			<!-- TODO: Add/set money value by player -->
+	<body ng-controller="playerController">
+		<div id="logo">
+			<h1>Elektro!</h1>
 		</div>
 		
-		<div id="addPlayer">
-			<button id="addPlayerButton" ng-click="toggleAddPlayerForm()" ng-show="players.length > 0 && !addPlayerFormButtonHide">
-				Add a New Player
-			</button>
-			<div id="addPlayerForm" ng-show="players.length == 0 || addPlayerFormVisible">
-				<h3>Add a new player:</h3>
-				<input type="text" name="name" ng-model="newPlayerName"> 
-				<div id="addPlayerFormButtons">
-					<button ng-click="addPlayer()" ng-disabled="newPlayerName == ''">
-						Add Player
+		<div id="playerContainer">
+			<div class="player" ng-repeat="player in players | orderBy: 'name'">
+				<div class="removePlayerButton">
+					<button
+						class="btn btn-xs btn-danger"
+						ng-click="removePlayer(player)">
+						X
 					</button>
-					<button ng-click="addPlayerCancel()" ng-show="players.length > 0">
-						Cancel
+				</div>
+				
+				<div class="playerDetails label label-default">
+					<span class="name">{{player.name}}</span>
+					<span class="money">{{player.money}}</span>
+				</div>
+				
+				<!-- TODO: Increment money logic (modal dialog?) -->
+				<div class="addMoneyButton">
+					<button
+						class="btn btn-xs btn-success">
+						+
 					</button>
 				</div>
 			</div>
 		</div>
+		
+		<div id="addPlayerForm">				
+			<button
+				id="addPlayerButton"
+				class="btn btn-primary"
+				ng-click="toggleAddPlayerForm()"
+				ng-show="players.length > 0 && !addPlayerFormButtonHide">
+				Add Player
+			</button>
+			
+			<div ng-show="players.length == 0 || addPlayerFormVisible">
+				<input
+					type="text"
+					class="form-control"
+					ng-model="newPlayerName"
+					placeholder="Player">
+				
+				<div id="addPlayerFormButtons">
+					<button
+						class="btn btn-link"
+						ng-click="addPlayerCancel()"
+						ng-show="players.length > 0">
+						Cancel
+					</button>
+					
+					<button
+						class="btn btn-success"
+						ng-click="addPlayer()"
+						ng-disabled="newPlayerName == ''">
+						Add
+					</button>
+				</div>
+			</div>
+		</div>
+		
+		<!-- TODO: Log of changes (players added/removed, money values changed) -->
 	</body>
-	
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>	
 	<script src="playerController.js"></script>
 </html>

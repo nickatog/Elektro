@@ -1,26 +1,56 @@
-body {
-	max-width: 200px;
+#logo {
+	text-align: center;
+	width: 100%;
+}
+
+#playerContainer {
+	display: table;
+	margin: auto;
+	margin-top: 10px;
 }
 
 .player {
-	margin-top: 4px;
-	border: 1px solid black;
-	max-width: 200px;
+	display: table-row;
+}
+
+.removePlayerButton {
+	display: table-cell;
+	position: relative;
+	top: -14px;
+	right: 4px;
+}
+
+.playerDetails {
+	display: table-cell;
+	float: left;
+	width: 100%;
+	min-width: 175px;
 }
 
 .name {
-	margin: auto;
-	padding-left: 4px;
+	float: left;
+	font-size: xx-large;
 	font-weight: bold;
 }
 
 .money {
 	float: right;
-	padding-right: 4px;
+	margin-left: 24px;
+	font-size: xx-large;
 }
 
-#addPlayer {
-	margin-top: 4px;
+.addMoneyButton {
+	display: table-cell;
+	position: relative;
+	top: -14px;
+	left: 4px;
+}
+
+#addPlayerForm {
+	margin: auto;
+	margin-top: 10px;
+	width: 100%;
+	max-width: 175px;
 }
 
 #addPlayerButton {
@@ -28,6 +58,7 @@ body {
 	margin: auto;
 }
 
-#addPlayerForm {
-	text-align: center;
+#addPlayerFormButtons {
+	float: right;
+	padding-top: 2px;
 }

@@ -1,0 +1,33 @@
+body {
+	max-width: 200px;
+}
+
+.player {
+	margin-top: 4px;
+	border: 1px solid black;
+	max-width: 200px;
+}
+
+.name {
+	margin: auto;
+	padding-left: 4px;
+	font-weight: bold;
+}
+
+.money {
+	float: right;
+	padding-right: 4px;
+}
+
+#addPlayer {
+	margin-top: 4px;
+}
+
+#addPlayerButton {
+	display: block;
+	margin: auto;
+}
+
+#addPlayerForm {
+	text-align: center;
+}

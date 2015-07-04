@@ -1,12 +1,41 @@
 <!doctype html>
 <html ng-app="elektroApp">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
 	
 	<head>
 		<title>Elektro: A Power Grid Assistant</title>
 	</head>
 	
-	<body ng-controller="playerController">
+	<body ng-controller="playerController">		
+		<div ng-repeat="player in players">
+			<div class="player">
+				<span class="name">{{player.name}}</span>
+				<span class="money">{{player.money}}</span>
+			</div>
+			
+			<!-- TODO: Remove player -->
+			<!-- TODO: Add/set money value by player -->
+		</div>
+		
+		<div id="addPlayer">
+			<button id="addPlayerButton" ng-click="toggleAddPlayerForm()" ng-show="players.length > 0 && !addPlayerFormButtonHide">
+				Add a New Player
+			</button>
+			<div id="addPlayerForm" ng-show="players.length == 0 || addPlayerFormVisible">
+				<h3>Add a new player:</h3>
+				<input type="text" name="name" ng-model="newPlayerName"> 
+				<div id="addPlayerFormButtons">
+					<button ng-click="addPlayer()" ng-disabled="newPlayerName == ''">
+						Add Player
+					</button>
+					<button ng-click="addPlayerCancel()" ng-show="players.length > 0">
+						Cancel
+					</button>
+				</div>
+			</div>
+		</div>
 	</body>
 	
 	<script src="playerController.js"></script>

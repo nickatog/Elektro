@@ -35,12 +35,19 @@
 					<span class="money">{{player.money}}</span>
 				</div>
 				
-				<!-- TODO: Increment money logic (modal dialog?) -->
 				<div class="addMoneyButton">
 					<button
-						class="btn btn-xs btn-success">
+						class="btn btn-xs btn-success"
+						ng-click="addMoneyValue($index, player)">
 						+
 					</button>
+					
+					<input
+						id="addMoneyValue"
+						type="number"
+						class="form-control"
+						ng-model="$parent.addMoneyAmount"
+						ng-show="visibleAddMoneyIndex == $index">
 				</div>
 			</div>
 		</div>

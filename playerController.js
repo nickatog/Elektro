@@ -6,6 +6,9 @@ function ($scope) {
 	
 	$scope.startingMoney = 50;
 	
+	$scope.visibleAddMoneyIndex = -1;
+	$scope.addMoneyAmount = 0;
+	
 	$scope.addPlayerFormButtonHide = false;
 	$scope.addPlayerFormVisible = false;
 	
@@ -17,6 +20,20 @@ function ($scope) {
 			$scope.addPlayerFormVisible = true;
 		};
 	
+	$scope.addMoneyValue =
+		function(index, player) {
+			if (index != $scope.visibleAddMoneyIndex) {
+				$scope.addMoneyAmount = 0;
+				
+				$scope.visibleAddMoneyIndex = index;
+			} else {
+				player.money += parseInt($scope.addMoneyAmount);
+				$scope.addMoneyAmount = 0;
+				
+				$scope.visibleAddMoneyIndex = -1;
+			}
+		};
+	
 	$scope.addPlayer =
 		function() {
 			$scope.players.push({ name: $scope.newPlayerName, money: $scope.startingMoney });
@@ -25,6 +42,10 @@ function ($scope) {
 			$scope.addPlayerFormVisible = false;
 			
 			$scope.newPlayerName = '';
+			
+			$scope.addMoneyAmount = 0;
+			
+			$scope.visibleAddMoneyIndex = -1;
 		};
 	
 	$scope.addPlayerCancel =
@@ -38,5 +59,9 @@ function ($scope) {
 	$scope.removePlayer =
 		function(player) {
 			$scope.players.splice($scope.players.indexOf(player), 1);
+			
+			$scope.addMoneyAmount = 0;
+			
+			$scope.visibleAddMoneyIndex = -1;
 		};
 });

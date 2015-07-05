@@ -46,6 +46,13 @@
 	left: 4px;
 }
 
+#addMoneyValue {
+	position: absolute;
+	top: 16px;
+	left: 24px;
+	width: 80px;
+}
+
 #addPlayerForm {
 	margin: auto;
 	margin-top: 10px;

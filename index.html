@@ -9,14 +9,14 @@
 	<link rel="stylesheet" href="styles.css">
 	
 	<head>
-		<title>Elektro: A Power Grid Assistant</title>
+		<title>Elektro</title>
 	</head>
 	
 	<body ng-controller="playerController" style="background-color: black">
 		<div id="playerContainer">
 			<div class="player" ng-repeat="player in players | orderBy: 'name'">
 				<div class="removePlayerButton">
-					<button class="btn btn-xs btn-danger" ng-click="removePlayer(player)">
+					<button class="btn btn-xs btn-danger" ng-click="removePlayer(player)" confirm-click="Remove player?">
 						X
 					</button>
 				</div>

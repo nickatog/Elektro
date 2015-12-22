@@ -1,10 +1,14 @@
 angular
-.module('elektroApp', [])
-.controller('playerController',
-function ($scope) {
+.module('elektroApp', ['ngCookies'])
+.controller('playerController', ['$scope', '$cookies', 
+function ($scope, $cookies) {
 	$scope.players = [];
+	var cachedPlayers = $cookies.getObject('players');
+	if (cachedPlayers != undefined && cachedPlayers != null) {
+		$scope.players = cachedPlayers;
+	}
 	
-	$scope.startingMoney = 50;
+	$scope.startingMoney = 0;
 	
 	$scope.visibleAddMoneyIndex = -1;
 	$scope.addMoneyAmount = 0;
@@ -27,7 +31,12 @@ function ($scope) {
 				
 				$scope.visibleAddMoneyIndex = index;
 			} else {
-				player.money += parseInt($scope.addMoneyAmount);
+				var money = parseInt($scope.addMoneyAmount)
+				if (!isNaN(money)) {
+					player.money += parseInt($scope.addMoneyAmount);
+				}
+				$cookies.putObject('players', $scope.players);
+				
 				$scope.addMoneyAmount = 0;
 				
 				$scope.visibleAddMoneyIndex = -1;
@@ -37,6 +46,7 @@ function ($scope) {
 	$scope.addPlayer =
 		function() {
 			$scope.players.push({ name: $scope.newPlayerName, money: $scope.startingMoney });
+			$cookies.putObject('players', $scope.players);
 			
 			$scope.addPlayerFormButtonHide = false;
 			$scope.addPlayerFormVisible = false;
@@ -59,9 +69,38 @@ function ($scope) {
 	$scope.removePlayer =
 		function(player) {
 			$scope.players.splice($scope.players.indexOf(player), 1);
+			$cookies.putObject('players', $scope.players);
 			
 			$scope.addMoneyAmount = 0;
 			
 			$scope.visibleAddMoneyIndex = -1;
 		};
+}])
+.directive('focusOnShow', function($timeout) {
+    return {
+        restrict: 'A',
+        link: function($scope, $element, $attr) {
+            if ($attr.ngShow){
+                $scope.$watch($attr.ngShow, function(newValue){
+                    if(newValue){
+                        $timeout(function(){
+                            $element[0].focus();
+							$element[0].select();
+                        }, 0);
+                    }
+                })      
+            }
+            if ($attr.ngHide){
+                $scope.$watch($attr.ngHide, function(newValue){
+                    if(!newValue){
+                        $timeout(function(){
+                            $element[0].focus();
+							$element[0].select();
+                        }, 0);
+                    }
+                })      
+            }
+
+        }
+    };
 });

@@ -1,6 +1,7 @@
 <!doctype html>
 <html ng-app="elektroApp">
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.js"></script>
 	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -26,11 +27,11 @@
 				</div>
 				
 				<div class="addMoneyButton">
-					<button class="btn btn-xs btn-success" ng-click="addMoneyValue($index, player);" onclick="$(this).parent.children('.addMoneyValue').focus();)">
+					<button class="btn btn-xs btn-success" ng-click="addMoneyValue($index, player);">
 						+
 					</button>
 					
-					<input type="number" class="addMoneyValue form-control" ng-model="$parent.addMoneyAmount" ng-show="visibleAddMoneyIndex == $index">
+					<input type="number" class="addMoneyValue form-control" ng-model="$parent.addMoneyAmount" ng-show="visibleAddMoneyIndex == $index" focus-on-show>
 				</div>
 			</div>
 		</div>
